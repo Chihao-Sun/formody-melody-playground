@@ -94,7 +94,7 @@ The deployable artifact remains in `dist/`; this preserves the current Sites hos
 - `dist/src/render`: Canvas rendering only.
 - `dist/src/app.js`: application orchestration and UI state.
 - `tests/`: deterministic math and music tests plus optional browser checks.
-- `docs/`: mathematical basis, prototype evidence, current-site provenance, architecture, operations, and roadmap.
+- `docs/`: mathematical basis, prototype evidence, current-site provenance, architecture, operations, roadmap, and conversation workflow.
 
 可部署产物继续保留在 `dist/`，以维持当前 Sites 的托管约定。静态站点内部按职责拆分：
 
@@ -104,7 +104,7 @@ The deployable artifact remains in `dist/`; this preserves the current Sites hos
 - `dist/src/render`：只负责 Canvas 绘制。
 - `dist/src/app.js`：应用编排与界面状态。
 - `tests/`：确定性的数学、音乐测试与可选浏览器检查。
-- `docs/`：数学依据、原型证据、站点来源、架构、运营与路线文档。
+- `docs/`：数学依据、原型证据、站点来源、架构、运营、路线与对话规范。
 
 ## Verification
 
