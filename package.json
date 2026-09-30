@@ -1,0 +1,10 @@
+{
+  "name": "formody",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "python3 -m http.server 5173 --directory dist",
+    "test": "node --test --test-isolation=none tests/*.test.mjs"
+  }
+}

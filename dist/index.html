@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07090e">
+  <meta name="description" content="Formody · 拨形见声。拖动一个起点，让真实的数学轨迹成为循环声音。">
+  <title>Formody · 拨形见声</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307090e'/%3E%3Cpath d='M16 5 27 13 23 26 9 26 5 13Z' stroke='%23a3afff' fill='none' stroke-width='1.5'/%3E%3Ccircle cx='25' cy='7' r='2' fill='%23d8e6bd'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <a class="wordmark" href="./" aria-label="Formody · 拨形见声">formody<span>拨形见声</span></a>
+      <span class="edition">STUDY 001 <i></i> OUTER BILLIARDS</span>
+    </header>
+    <section class="instrument" aria-label="数学声音游乐场">
+      <div class="intro" id="intro">
+        <p class="eyebrow">A PLAYABLE MATHEMATICAL STUDY</p>
+        <h1>Play a shape.<br><span>Find a melody.</span></h1>
+        <p class="invitation">移动一个起点，让数学开口。</p>
+        <button class="start" id="start"><span>开启体验</span><span aria-hidden="true">↗</span></button>
+        <p class="start-note">建议戴上耳机 <span>·</span> 点击后开启声音</p>
+      </div>
+      <canvas id="canvas" tabindex="0" aria-label="拖动或点击放置 Seed；也可用方向键移动。五边形外的起点产生轨迹和声音。" aria-describedby="hint"></canvas>
+      <div class="top-left"><span class="label">EUCLIDEAN PLANE</span><span id="coordinates">x +1.200 &nbsp; y +1.220</span></div>
+      <div class="top-right"><span class="indicator" id="indicator"></span><span id="audio-state">等待开启</span></div>
+      <div class="canvas-caption"><span class="label">REGULAR PENTAGON</span><p id="orbit-status">正在计算轨迹</p></div>
+      <div class="hint" id="hint">拖动亮点，或点击五边形外任意位置。</div>
+      <p id="error" role="alert"></p>
+    </section>
+    <footer>
+      <div class="transport">
+        <button class="play-control" id="play" aria-label="开启声音" title="开启声音">▶</button>
+        <div><span class="label" id="tempo-label">96 BPM · EIGHTH NOTES</span><span class="transport-status" id="transport-status">声音等待开启</span></div>
+      </div>
+      <div class="phrase" aria-label="循环乐句的音符" id="phrase"></div>
+      <div class="footer-actions"><button id="reset">重置起点</button><button id="about" aria-haspopup="dialog">作品说明 ↗</button></div>
+    </footer>
+  </main>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <button id="close-about" class="close" aria-label="关闭说明">×</button>
+    <p class="eyebrow">FORMODY · 拨形见声</p>
+    <h2 id="about-title">一条规则，一段声音。</h2>
+    <p>从五边形外的起点出发，选择让多边形处于行进方向左侧的切线，以切点为中心反射，再重复这个动作。这就是这里的 Outer Billiards。</p>
+    <p>每一步经过的切点顶点决定一个音符。当前起点的前 <span id="phrase-length">16</span> 步成为循环乐句；移动起点，就会重新演奏。亮起的轨迹段跟随声音的时钟。</p>
+    <p>音乐循环与数学轨道回归分别计算。有限步内未检测到回归，不能证明轨道无限或不周期；数值回归也不是严格证明。切线沿整条边时，数学映射未定义，轨迹会停止。</p>
+    <p class="small">这是单 Seed 原型。音色、速度、调式与乐句长度都是暂定参数。音乐使用浏览器实时合成。</p>
+    <a href="https://structures.uni-heidelberg.de/blog/posts/2024_01_costa/index.php" target="_blank" rel="noreferrer">阅读数学依据 ↗</a>
+  </dialog>
+</body>
+</html>

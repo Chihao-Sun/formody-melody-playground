@@ -1,0 +1,17 @@
+{
+  "desktop_and_touch": "passed",
+  "audio_signal": {
+    "rms": 0.027326941862118623,
+    "peak": 0.17807701230049133,
+    "pitches": [
+      60,
+      63,
+      67,
+      62,
+      70
+    ]
+  },
+  "native_webmcp_available": false,
+  "webmcp_stub_contract": "passed",
+  "errors": []
+}
