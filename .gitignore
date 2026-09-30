@@ -7,3 +7,8 @@ dist/.cache/
 .env
 .env.*
 !.env.example
+# Local-only private notes; sensitive material belongs outside the public repository.
+/.private/
+/private-sync/
+/docs-private/
+*.private.md
