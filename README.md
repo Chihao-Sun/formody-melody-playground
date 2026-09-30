@@ -104,8 +104,10 @@ The deployable artifact remains in `dist/`; this preserves the current Sites hos
 - `dist/src/render`: Canvas rendering only.
 - `dist/src/app.js`: application orchestration and UI state.
 - `tests/`: deterministic math and music tests plus optional browser checks.
-- `AGENTS.md`: project instructions for AI-assisted work.
-- `docs/`: mathematical basis, prototype evidence, current-site provenance, architecture, operations, roadmap, conversation workflow, and open-source/community policy.
+- [AGENTS.md](AGENTS.md): project instructions for AI-assisted work.
+- [docs/conversation-workflow.md](docs/conversation-workflow.md): chat naming, AI collaboration, and handoff rules.
+- [docs/open-source-and-promotion.md](docs/open-source-and-promotion.md): public/private boundaries, launch readiness, and community promotion.
+- `docs/`: mathematical basis, prototype evidence, current-site provenance, architecture, operations, and roadmap.
 
 可部署产物继续保留在 `dist/`，以维持当前 Sites 的托管约定。静态站点内部按职责拆分：
 
@@ -115,8 +117,10 @@ The deployable artifact remains in `dist/`; this preserves the current Sites hos
 - `dist/src/render`：只负责 Canvas 绘制。
 - `dist/src/app.js`：应用编排与界面状态。
 - `tests/`：确定性的数学、音乐测试与可选浏览器检查。
-- `AGENTS.md`：项目内 AI 协作与公开资料处理规则。
-- `docs/`：数学依据、原型证据、站点来源、架构、运营、路线、对话规范与开源/社区规则。
+- [AGENTS.md](AGENTS.md)：项目内 AI 协作与公开资料处理规则。
+- [docs/conversation-workflow.md](docs/conversation-workflow.md)：对话命名、AI 协作与交接规范。
+- [docs/open-source-and-promotion.md](docs/open-source-and-promotion.md)：公开/私密边界、开源准备和社区推广规则。
+- `docs/`：数学依据、原型证据、站点来源、架构、运营与路线文档。
 
 ## Verification
 
