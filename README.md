@@ -8,6 +8,16 @@ Formody is an experimental interactive space that explores how mathematical rela
 
 Formody 是一处实验性的感知空间：数学的秩序化作可触的动作，图形的变化牵引旋律与音色，交互让一次观看变成一场亲身参与的聆听。当前站点是已核验的单 Seed 原型：一个可移动的起点产生 Outer Billiards 轨迹，并由浏览器实时合成乐句。
 
+## Community
+
+This repository is public while the project prepares for an open-source release. The project license and contribution rules have not been selected yet. Stars and feedback are welcome; code contributions are not open yet.
+
+If you enjoy exploring real mathematics through motion and sound, star the repository to follow the next experiments.
+
+本仓库目前公开可见，项目正在准备开源；许可证和贡献规则尚未确定。欢迎 Star 和反馈，暂不开放代码贡献。
+
+喜欢通过动态画面与声音探索真实数学吗？欢迎给仓库点 Star，关注后续实验。
+
 ## Current Site
 
 The current Sites publication is titled `Formody · 拨形见声`. It is a playable mathematical-art prototype based on a regular pentagon and the Euclidean Outer Billiards map.
@@ -94,7 +104,8 @@ The deployable artifact remains in `dist/`; this preserves the current Sites hos
 - `dist/src/render`: Canvas rendering only.
 - `dist/src/app.js`: application orchestration and UI state.
 - `tests/`: deterministic math and music tests plus optional browser checks.
-- `docs/`: mathematical basis, prototype evidence, current-site provenance, architecture, operations, roadmap, and conversation workflow.
+- `AGENTS.md`: project instructions for AI-assisted work.
+- `docs/`: mathematical basis, prototype evidence, current-site provenance, architecture, operations, roadmap, conversation workflow, and open-source/community policy.
 
 可部署产物继续保留在 `dist/`，以维持当前 Sites 的托管约定。静态站点内部按职责拆分：
 
@@ -104,7 +115,8 @@ The deployable artifact remains in `dist/`; this preserves the current Sites hos
 - `dist/src/render`：只负责 Canvas 绘制。
 - `dist/src/app.js`：应用编排与界面状态。
 - `tests/`：确定性的数学、音乐测试与可选浏览器检查。
-- `docs/`：数学依据、原型证据、站点来源、架构、运营、路线与对话规范。
+- `AGENTS.md`：项目内 AI 协作与公开资料处理规则。
+- `docs/`：数学依据、原型证据、站点来源、架构、运营、路线、对话规范与开源/社区规则。
 
 ## Verification
 
