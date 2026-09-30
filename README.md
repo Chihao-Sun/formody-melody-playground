@@ -2,43 +2,20 @@
 
 **An interactive playground for melody, rhythm, and visual form.**
 
+**一个让旋律、节奏与视觉形态彼此回响的互动场域。**
+
 Formody is an experimental interactive space that explores how mathematical relationships can become visual structures, musical gestures, and responsive sound experiences. It is designed for active exploration: changing parameters, observing results, and listening to how form and sound evolve together.
+
+Formody 是一处实验性的感知空间：数学的秩序化作可触的动作，图形的变化牵引旋律与音色，交互让一次观看变成一场亲身参与的聆听。你可以改变参数、观察回应，也可以听见形与声如何在变化中彼此生成。
 
 ## Why Formody
 
-Formody investigates the relationship between structure and perception—how a rule can produce rhythm, how a pattern can become a phrase, and how interaction can become a form of composition.
+Formody investigates the meeting point between structure and perception—how a rule can produce rhythm, how a pattern can become a phrase, and how interaction can become a form of composition.
 
 - **Mathematical thinking** provides patterns, proportions, sequences, cycles, and transformations.
 - **Artistic expression** shapes form, color, movement, atmosphere, and surprise.
 - **Music as material** brings melody, rhythm, harmony, timbre, resonance, and silence into the experience.
 - **Interaction as instrument** connects gesture, parameters, feedback, and improvisation.
-
-## Experience
-
-Formody is not only a finished image or a fixed composition. It is a space to:
-
-1. Change a parameter, gesture, or visual motif.
-2. Observe how the composition responds through form and motion.
-3. Listen for changes in pitch, rhythm, timbre, and resonance.
-4. Improvise with relationships until a new melody emerges.
-
-## Status
-
-Formody is currently an evolving interactive experience prototype. Its interface, musical interaction model, visual language, and sound system will develop through continued making and testing.
-
-## Keywords
-
-interactive music · generative music · sound art · audiovisual experience · creative coding · mathematical art · musical interface · procedural composition
-
----
-
-## 中文
-
-### 拨形见声
-
-**一个让数学关系、视觉形态与音乐感受彼此回响的互动场域。**
-
-Formody 是一处实验性的感知空间：数学的秩序化作可触的动作，图形的变化牵引旋律与音色，交互让一次观看变成一场亲身参与的聆听。你可以改变参数、观察回应，也可以听见形与声如何在变化中彼此生成。
 
 ### 为什么是 Formody
 
@@ -49,6 +26,15 @@ Formody 是一处实验性的感知空间：数学的秩序化作可触的动作
 - **音乐，是流动的材料**：旋律、节奏、和声、音色、共鸣与静默，在空间中展开。
 - **交互，是演奏**：手势、参数、反馈与即兴，让体验不再只是被观看，而是被亲手唤醒。
 
+## Experience
+
+Formody is not only a finished image or a fixed composition. It is a space to:
+
+1. Change a parameter, gesture, or visual motif.
+2. Observe how the composition responds through form and motion.
+3. Listen for changes in pitch, rhythm, timbre, and resonance.
+4. Improvise with relationships until a new melody emerges.
+
 ### 体验方式
 
 它不是一件等待被看完的作品，而是一件等待被奏响的作品：
@@ -58,9 +44,17 @@ Formody 是一处实验性的感知空间：数学的秩序化作可触的动作
 3. 听音高、节奏、音色与共鸣如何随之改变。
 4. 在关系之间即兴，直到一段新的旋律浮现。
 
+## Status
+
+Formody is currently an evolving interactive experience prototype. Its interface, musical interaction model, visual language, and sound system will develop through continued making and testing.
+
 ### 项目状态
 
 Formody 目前处于持续生长的互动体验原型阶段。界面、音乐交互模型、视觉语言与声音系统，将在不断创作与测试的往返中逐渐成形。
+
+## Keywords
+
+interactive music · generative music · sound art · audiovisual experience · creative coding · mathematical art · musical interface · procedural composition
 
 ### 关键词
 
