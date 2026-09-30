@@ -1,4 +1,4 @@
-# Formody — Melody Playground
+# Formody · 拨形见声 — Melody Playground
 
 **An interactive playground for melody, rhythm, and visual form.**
 
