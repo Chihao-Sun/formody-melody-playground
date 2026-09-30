@@ -15,4 +15,4 @@ jobs:
         with:
           node-version: 22
       - name: Run deterministic tests
-        run: node --test --test-isolation=none tests/*.test.mjs
+        run: npm test

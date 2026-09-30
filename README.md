@@ -78,7 +78,7 @@ The project is a dependency-free static site. It requires Node.js 22+ for tests 
 python3 -m http.server 5173 --directory dist
 
 # in another terminal
-/path/to/node --test --test-isolation=none tests/*.test.mjs
+/path/to/node --test tests/*.test.mjs
 ```
 
 Open `http://localhost:5173`. The original `npm run dev` and `npm test` scripts remain available when npm is installed.
@@ -89,7 +89,7 @@ Open `http://localhost:5173`. The original `npm run dev` and `npm test` scripts 
 python3 -m http.server 5173 --directory dist
 
 # 在另一个终端
-/path/to/node --test --test-isolation=none tests/*.test.mjs
+/path/to/node --test tests/*.test.mjs
 ```
 
 打开 `http://localhost:5173` 即可体验。安装 npm 的环境仍可使用原有的 `npm run dev` 与 `npm test`。

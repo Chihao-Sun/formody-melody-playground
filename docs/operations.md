@@ -38,9 +38,9 @@ Make a focused change. Do not mix visual polish, mathematical rule changes, audi
 
 ### 2. Verification
 
-Run `node --test --test-isolation=none tests/*.test.mjs`. Run the browser check when interaction, audio, responsive behavior, or page lifecycle changes.
+Run `node --test tests/*.test.mjs`. Run the browser check when interaction, audio, responsive behavior, or page lifecycle changes.
 
-运行 `node --test --test-isolation=none tests/*.test.mjs`。当交互、声音、响应式行为或页面生命周期发生变化时，运行浏览器检查。
+运行 `node --test tests/*.test.mjs`。当交互、声音、响应式行为或页面生命周期发生变化时，运行浏览器检查。
 
 ### 3. Sites Save
 
