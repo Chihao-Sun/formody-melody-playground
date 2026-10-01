@@ -1,0 +1,17 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { DURATION,BEAT,SCALE,MAX_DROPS,clamp,envelope,phaseAt,makeDrop,noteEvents,flightPoint } from '../dist/src/ripple/core.js';
+import { insideOrOnBoundary, regularPolygon, outerBilliardsStep } from '../dist/src/math/outer-billiards.js';
+test('gesture generates deterministic real geometry and motif',()=>{assert.deepEqual(makeDrop(.5,.45,.8,2,1),makeDrop(.5,.45,.8,2,1));});
+test('all mapped seeds are outside the unit pentagon',()=>{for(let x=0;x<=10;x++)for(let y=0;y<=10;y++){const d=makeDrop(x/10,y/10,.5,0);assert.equal(insideOrOnBoundary(d.seed,regularPolygon()),false);}});
+test('motif comes from actual support vertex sequence',()=>{const d=makeDrop(.28,.49,.7,0);assert.deepEqual(d.motif,d.orbit.symbols.slice(0,16));let p=d.seed;for(const n of d.motif){const step=outerBilliardsStep(p,regularPolygon());assert.equal(step.vertex,n);p=step.next;}});
+test('different locations change mathematical seeds and at least some motifs',()=>{const all=new Set();for(let i=1;i<9;i++)all.add(makeDrop(i/10,.4,.6,0).motif.join());assert.ok(all.size>=3);});
+test('gesture input bounded; invalid values rejected',()=>{assert.equal(makeDrop(-1,2,5,0).x,0);assert.equal(makeDrop(-1,2,5,0).y,1);assert.equal(makeDrop(-1,2,5,0).strength,1);assert.throws(()=>makeDrop(NaN,.5,1,0),TypeError);});
+test('phase changes occur at specified boundaries',()=>{assert.deepEqual([0,3.99,4,12.99,13,22.99,23,37].map(phaseAt),[0,0,1,1,2,2,3,3]);});
+test('envelope is finite bounded and silent at both ends',()=>{for(let a=-1;a<=40;a+=.03){assert.ok(envelope(a)>=0&&envelope(a)<=1);}assert.equal(envelope(-1),0);assert.equal(envelope(0),0);assert.equal(envelope(DURATION),0);assert.equal(envelope(50),0);});
+test('sound begins sparse, grows layers, then stops',()=>{const d=makeDrop(.51,.47,.82,0);const kinds=(a,b)=>new Set(Array.from({length:Math.ceil(b/(BEAT/2))},(_,i)=>i).filter(i=>i*BEAT/2>=a).flatMap(i=>noteEvents(d,i).map(n=>n.kind)));assert.deepEqual([...kinds(0,4)],['pluck']);assert.equal(kinds(13,23).size,5);assert.equal(noteEvents(d,Math.ceil(DURATION/(BEAT/2))).length,0);});
+test('all pitches, gains and durations finite; attack fits duration',()=>{const d=makeDrop(.7,.3,.9,0);for(let i=0;i<130;i++)for(const n of noteEvents(d,i)){assert.ok([n.midi,n.gain,n.duration,n.pan].every(Number.isFinite));assert.ok(n.gain>0&&n.gain<=.1);assert.ok(n.duration>1.15);assert.ok(SCALE.includes(((n.midi-2)%12+12)%12));}});
+test('singular/empty geometry does not get substitute melody',()=>{const d=makeDrop(.5,.5,.5,0);d.motif=[];for(let i=0;i<100;i++)assert.deepEqual(noteEvents(d,i),[]);});
+test('invalid scheduler steps rejected',()=>{const d=makeDrop(.5,.5,.5,0);assert.throws(()=>noteEvents(d,-1),RangeError);assert.throws(()=>noteEvents(d,NaN),RangeError);});
+test('flight has exact endpoints and an arc',()=>{const a={x:5,y:10},b={x:50,y:40};assert.deepEqual(flightPoint(a,b,0,20),a);assert.ok(Math.abs(flightPoint(a,b,1,20).y-b.y)<1e-10);assert.ok(flightPoint(a,b,.5,20).y<(a.y+b.y)/2);});
+test('polyphony and input bounds are explicit',()=>{assert.equal(MAX_DROPS,4);assert.equal(clamp(1.5),1);assert.equal(clamp(-.2),0);});

@@ -4,9 +4,9 @@
 
 - Use the canonical project name **Formody · 拨形见声**. Do not revert to the older two-character label.
 - Formody is a browser-based art playground where genuine mathematical rules become interactive visuals and sound.
-- The current prototype is a single-Seed regular-pentagon Outer Billiards study with a monophonic phrase. Multi-voice music, additional mathematical studies, final visual language, and real iOS Safari validation remain future work.
-- The visual and musical direction is still being explored. Treat concepts and mockups as proposals until the owner confirms them.
-- Preserve mathematical truth: a musical loop does not prove the mathematical orbit is periodic; a finite search without a repeat does not prove an orbit is unbounded; do not describe a visual warp as genuine hyperbolic geometry.
+- The current source homepage is the Ripple study with a staged wave field and browser-synthesized musical layers. The original single-Seed regular-pentagon Outer Billiards demo is preserved at `dist/outer-billiards.html`. Read `docs/ripple-study.md` for tested scope and limitations. The last recorded Sites publication remains the earlier single-Seed version; this source update is not evidence of a deployment.
+- The visual and musical direction is still being explored. Treat concepts and mockups as proposals until the owner confirms them. Ripple duration, palette, tempo, voice design, and concurrency limits are iteration parameters, not permanently approved product requirements.
+- Preserve mathematical truth: a musical loop does not prove the mathematical orbit is periodic; a finite search without a repeat does not prove an orbit is unbounded; do not describe a visual warp as genuine hyperbolic geometry. Distinguish artistic wave fields from actual billiards trajectories and from physical fluid simulation.
 
 ## Work with the project
 

@@ -1,54 +1,59 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#07090e">
-  <meta name="description" content="Formody · 拨形见声。拖动一个起点，让真实的数学轨迹成为循环声音。">
-  <title>Formody · 拨形见声</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307090e'/%3E%3Cpath d='M16 5 27 13 23 26 9 26 5 13Z' stroke='%23a3afff' fill='none' stroke-width='1.5'/%3E%3Ccircle cx='25' cy='7' r='2' fill='%23d8e6bd'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css">
-  <script type="module" src="./src/app.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080d19">
+<meta name="description" content="Formody · 拨形见声 — 投下一颗小球，看涟漪交织成满幅色彩，听真实数学序列成为层叠声部。">
+<title>Formody · 拨形见声 — 投石涟漪</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23080d19'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%2397d5e5'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23c8c6ff'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:dark;--text:#ecedf5;--muted:#adb6c9;--line:rgba(187,203,241,.15)}
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;background:#080d19;overflow:hidden}
+body{font-family:Inter,"Helvetica Neue","Microsoft YaHei","PingFang SC",system-ui,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,a:focus-visible,canvas:focus-visible{outline:2px solid #bacbff;outline-offset:5px}
+button{background:none;border:none}button:disabled{opacity:.4;cursor:default}a{color:inherit;text-decoration:none}
+#stage{position:fixed;inset:0;isolation:isolate}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}#ink{touch-action:none;cursor:grab}#ink.dragging{cursor:grabbing}
+header{position:absolute;z-index:5;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:34px 44px;pointer-events:none;background:linear-gradient(#080d1966,transparent)}
+header a,header button{pointer-events:auto}.brand{display:flex;gap:19px;align-items:center}.wordmark{font-size:26px;font-weight:520;letter-spacing:-1.3px}.cn{font-size:11px;font-weight:400;letter-spacing:3px;color:#bec8db;border-left:1px solid var(--line);padding-left:20px}
+.top-actions{display:flex;align-items:center;gap:24px}.edition{font-size:9px;letter-spacing:2px;color:#adb6c9}.old-link{font-size:11px;color:#bbc5d7;border-bottom:1px solid #9da9c144;padding-bottom:4px}
+.intro{position:absolute;pointer-events:none;z-index:2;top:23%;left:20px;right:20px;text-align:center;transition:opacity 1.3s,transform 1.3s}
+.eyebrow{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#a9b8d2;margin:0 0 23px}
+h1{font-family:"Songti SC","Noto Serif CJK SC","STSong",serif;font-size:clamp(32px,4.4vw,57px);line-height:1.4;letter-spacing:8px;font-weight:400;margin:0 0 13px}
+.subtitle{font-size:12px;letter-spacing:2px;color:#b0bbd1;line-height:1.8;margin:0}
+body.active .intro{opacity:0;transform:translateY(-12px)}
+.side-note{position:absolute;left:44px;top:48%;writing-mode:vertical-rl;font-size:9px;letter-spacing:3px;color:#73849e;pointer-events:none;transition:opacity 1s}body.active .side-note{opacity:.4}
+.phase-box{position:absolute;left:44px;bottom:140px;pointer-events:none;opacity:0;transform:translateY(10px);transition:opacity 1s,transform 1s;text-shadow:0 2px 18px #020610}
+body.active .phase-box{opacity:1;transform:translateY(0)}.phase-kicker{font-size:9px;letter-spacing:3px;color:#c0cadd}.phase-name{font-family:"Songti SC","Noto Serif CJK SC",serif;font-size:33px;letter-spacing:9px;line-height:1.8}.phase-description{font-size:11px;letter-spacing:1px;color:#c3cede}
+.controls{position:absolute;bottom:max(27px,env(safe-area-inset-bottom));left:44px;right:44px;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.control-group{display:flex;align-items:center;gap:4px;padding:7px;border:1px solid var(--line);background:#0a102080;backdrop-filter:blur(22px);border-radius:40px;box-shadow:0 10px 40px #02051033}
+.control-group button{min-height:44px;border-radius:26px;transition:background .2s;white-space:nowrap}.control-group button:hover{background:#d3dcff16}.main-button{padding:0 21px!important;background:#d6ddf115!important;color:#e8eefb;border:1px solid #c0cafa27;font-size:12px;letter-spacing:1px}.main-button span{margin-right:9px;font-size:16px;font-weight:300}
+.icon-button{min-width:44px;font-size:17px}.sound-button{display:flex;align-items:center;gap:8px;padding:0 13px;font-size:11px;color:#bfc9dc}.sound-bars{display:flex;gap:2px;height:15px;align-items:center}.sound-bars i{display:block;width:2px;height:6px;background:currentColor}.sound-bars i:nth-child(2){height:13px}.sound-bars i:nth-child(3){height:9px}button[aria-pressed="false"] .sound-bars{opacity:.4}
+.divider{height:20px;width:1px;background:var(--line);margin:0 4px}.journey{display:flex;gap:8px;align-items:center;flex:1;justify-content:center;max-width:340px}.journey span{height:2px;flex:1;min-width:22px;background:#afbdd125;border-radius:10px;transition:background 1.8s}.journey span.past{background:#adbed380}.journey span.current{background:#c9dcf3}.journey-label{font-size:9px;letter-spacing:2px;color:#a5b2c9;margin-left:9px;white-space:nowrap}
+.about-button{font-size:11px;color:#b6c1d5;min-height:44px;padding:8px;white-space:nowrap}.about-button span{margin-left:12px}
+.sound-note{position:absolute;bottom:106px;left:0;right:0;text-align:center;font-size:10px;letter-spacing:1px;color:#8797b3;pointer-events:none;transition:opacity 1s}body.active .sound-note{opacity:0}
+#notice{position:absolute;z-index:7;left:50%;top:100px;transform:translateX(-50%);max-width:calc(100% - 40px);padding:10px 18px;border-radius:24px;background:#111b32df;border:1px solid var(--line);font-size:11px;line-height:1.7;text-align:center;pointer-events:none}#notice:empty{display:none}
+.paused-banner{display:none;position:absolute;top:100px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:2px;color:#d3deed;padding:9px 18px;border:1px solid var(--line);border-radius:24px;background:#080d1999}body.paused .paused-banner{display:block}
+dialog{color:#dae2f1;background:#0d1424;border:1px solid #7184a34d;border-radius:20px;padding:37px;max-width:510px;width:calc(100% - 34px);max-height:85dvh;box-shadow:0 30px 140px #0009}dialog::backdrop{background:#030611aa;backdrop-filter:blur(10px)}dialog h2{font-family:"Songti SC",serif;font-size:28px;font-weight:400;letter-spacing:3px;line-height:1.5}dialog p{font-size:12px;line-height:2;color:#aab7cd}dialog strong{font-weight:500;color:#e2eaf7}dialog .close{position:absolute;right:14px;top:12px;width:44px;height:44px;font-size:25px;color:#b5c0d5}dialog .foot{font-size:10px;color:#8494b0;border-top:1px solid var(--line);padding-top:16px}dialog a{border-bottom:1px solid #94aacf66}
+@media(max-width:700px){header{padding:24px}.wordmark{font-size:24px}.cn{font-size:10px;padding-left:14px;letter-spacing:2px}.brand{gap:14px}.edition{display:none}.top-actions{gap:10px}.old-link{font-size:10px}.intro{top:25%}h1{font-size:35px;letter-spacing:6px}.eyebrow{font-size:8px;letter-spacing:3px;margin-bottom:18px}.subtitle{font-size:11px}.side-note{display:none}.controls{left:17px;right:17px;bottom:max(23px,env(safe-area-inset-bottom));flex-wrap:wrap;justify-content:center;gap:11px}.control-group{padding:5px;gap:0;max-width:100%}.main-button{padding:0 16px!important}.sound-button{padding:0 10px}.journey{position:absolute;bottom:80px;left:20px;right:20px;max-width:none}.journey-label{font-size:8px}.about-button{position:absolute;bottom:123px;right:0;padding:4px;font-size:10px}.phase-box{left:26px;bottom:145px}.phase-name{font-size:27px;letter-spacing:7px}.phase-description{font-size:10px;max-width:210px}.phase-kicker{font-size:8px}.sound-note{bottom:133px;font-size:9px}body:not(.active) .journey{opacity:0}body:not(.active) .about-button{bottom:89px}.sound-button .sound-text{font-size:10px}}
+@media(max-height:580px){header{padding:18px 26px}.intro{top:18%}.eyebrow{margin-bottom:9px}h1{font-size:32px}.subtitle{display:none}.controls{bottom:15px}.phase-box{bottom:104px}.sound-note{bottom:92px}.phase-description{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-  <main>
-    <header>
-      <a class="wordmark" href="./" aria-label="Formody · 拨形见声">formody<span>拨形见声</span></a>
-      <span class="edition">STUDY 001 <i></i> OUTER BILLIARDS</span>
-    </header>
-    <section class="instrument" aria-label="数学声音游乐场">
-      <div class="intro" id="intro">
-        <p class="eyebrow">A PLAYABLE MATHEMATICAL STUDY</p>
-        <h1>Play a shape.<br><span>Find a melody.</span></h1>
-        <p class="invitation">移动一个起点，让数学开口。</p>
-        <button class="start" id="start"><span>开启体验</span><span aria-hidden="true">↗</span></button>
-        <p class="start-note">建议戴上耳机 <span>·</span> 点击后开启声音</p>
-      </div>
-      <canvas id="canvas" tabindex="0" aria-label="拖动或点击放置 Seed；也可用方向键移动。五边形外的起点产生轨迹和声音。" aria-describedby="hint"></canvas>
-      <div class="top-left"><span class="label">EUCLIDEAN PLANE</span><span id="coordinates">x +1.200 &nbsp; y +1.220</span></div>
-      <div class="top-right"><span class="indicator" id="indicator"></span><span id="audio-state">等待开启</span></div>
-      <div class="canvas-caption"><span class="label">REGULAR PENTAGON</span><p id="orbit-status">正在计算轨迹</p></div>
-      <div class="hint" id="hint">拖动亮点，或点击五边形外任意位置。</div>
-      <p id="error" role="alert"></p>
-    </section>
-    <footer>
-      <div class="transport">
-        <button class="play-control" id="play" aria-label="开启声音" title="开启声音">▶</button>
-        <div><span class="label" id="tempo-label">96 BPM · EIGHTH NOTES</span><span class="transport-status" id="transport-status">声音等待开启</span></div>
-      </div>
-      <div class="phrase" aria-label="循环乐句的音符" id="phrase"></div>
-      <div class="footer-actions"><button id="reset">重置起点</button><button id="about" aria-haspopup="dialog">作品说明 ↗</button></div>
-    </footer>
-  </main>
-  <dialog id="about-dialog" aria-labelledby="about-title">
-    <button id="close-about" class="close" aria-label="关闭说明">×</button>
-    <p class="eyebrow">FORMODY · 拨形见声</p>
-    <h2 id="about-title">一条规则，一段声音。</h2>
-    <p>从五边形外的起点出发，选择让多边形处于行进方向左侧的切线，以切点为中心反射，再重复这个动作。这就是这里的 Outer Billiards。</p>
-    <p>每一步经过的切点顶点决定一个音符。当前起点的前 <span id="phrase-length">16</span> 步成为循环乐句；移动起点，就会重新演奏。亮起的轨迹段跟随声音的时钟。</p>
-    <p>音乐循环与数学轨道回归分别计算。有限步内未检测到回归，不能证明轨道无限或不周期；数值回归也不是严格证明。切线沿整条边时，数学映射未定义，轨迹会停止。</p>
-    <p class="small">这是单 Seed 原型。音色、速度、调式与乐句长度都是暂定参数。音乐使用浏览器实时合成。</p>
-    <a href="https://structures.uni-heidelberg.de/blog/posts/2024_01_costa/index.php" target="_blank" rel="noreferrer">阅读数学依据 ↗</a>
-  </dialog>
+<main id="stage" aria-label="Formody 投石涟漪互动体验">
+<canvas id="surface" aria-hidden="true"></canvas>
+<canvas id="ink" tabindex="0" aria-label="按住小球向前拖动，松手投掷。也可以轻点水面。方向键调整落点，空格或回车投掷。" aria-describedby="interaction-hint"></canvas>
+<header><a href="./" class="brand" aria-label="Formody · 拨形见声"><span class="wordmark">formody</span><span class="cn">拨形见声</span></a><div class="top-actions"><span class="edition">STUDY 001 &nbsp; / &nbsp; RIPPLE</span><a class="old-link" href="./outer-billiards.html">原版轨迹 ↗</a></div></header>
+<section class="intro"><p class="eyebrow">A SMALL GESTURE. AN EXPANDING WORLD.</p><h1>一掷，万象生。</h1><p class="subtitle">让一颗小球，唤醒一片声色。</p></section>
+<div class="side-note">MATHEMATICS IN RESONANCE</div>
+<section class="phase-box" aria-live="polite" aria-atomic="true"><div class="phase-kicker" id="phase-kicker">01 / RIPPLE</div><div class="phase-name" id="phase-name">涟漪</div><div class="phase-description" id="phase-description">一个落点，世界开始回应。</div></section>
+<p class="sound-note" id="interaction-hint">拖动、松手，或轻点水面 · 交互后开启声音 · 建议佩戴耳机</p>
+<div class="paused-banner">画面与声音已暂停</div>
+<div id="notice" role="status" aria-live="polite"></div>
+<footer class="controls"><div class="control-group"><button id="demo" class="main-button"><span aria-hidden="true">↗</span>投一颗</button><span class="divider"></span><button id="sound" class="sound-button" aria-label="关闭声音" aria-pressed="true"><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="sound-text">声音待开启</span></button><button id="pause" class="icon-button" aria-label="暂停画面与声音" title="暂停画面与声音">Ⅱ</button><button id="reset" class="icon-button" aria-label="清空画面与声音，重新开始" title="重新开始">↺</button></div><div class="journey" aria-hidden="true"><span></span><span></span><span></span><span></span><div class="journey-label">RIPPLE / 01</div></div><button id="about" class="about-button" aria-haspopup="dialog">作品说明<span>↗</span></button></footer>
+<dialog id="about-dialog" aria-labelledby="about-title"><button class="close" id="close-about" aria-label="关闭说明">×</button><p class="eyebrow">FORMODY · STUDY 001 / RIPPLE</p><h2 id="about-title">从一颗小球，<br>到一场声色合奏。</h2><p><strong>怎么玩</strong><br>向一个方向拖动小球，松手投出；速度和距离改变力度，落点改变数学起点与旋律。也可以点水面轻投，或按「投一颗」。一掷会经历涟漪、交织、齐奏、余韵，约 38 秒后归于安静。可再次投掷，叠加回应。</p><p><strong>数学与艺术的边界</strong><br>这版沿用原 demo 的正五边形 Outer Billiards 计算。真实切点序列决定五声音阶中的旋律，淡线展示实际计算的轨迹。彩色涟漪使用径向波包与五重角向谐波的艺术化叠加，不是流体仿真，也不是外台球轨迹本身。没有把音乐循环当成数学轨道周期的证明。</p><p><strong>听到的不是预录背景音乐</strong><br>声音在浏览器内实时合成：拨弦感旋律、低音、铺底和声与高音泛响逐层进入。这里的「交响」是多声部的展开方式，不是真实交响乐团采样。</p><p class="foot">空格 / 回车：投掷 · 方向键：调整下一次落点 · Esc：取消拖动<br>低动态偏好会降低动效节奏；可随时暂停或静音。无录音、上传或外部素材请求。<br><a href="./outer-billiards.html">返回原版单 Seed 数学轨迹 ↗</a></p></dialog>
+</main>
+<script type="module" src="./src/ripple/app.js"></script>
 </body>
 </html>

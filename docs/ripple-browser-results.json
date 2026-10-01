@@ -1,0 +1,44 @@
+{
+  "runtime": "Chromium 144, inline bundle of the source ES modules; no external network",
+  "real_ios_safari": "NOT TESTED",
+  "checks": {
+    "silent_before_user_gesture": true,
+    "first_sound_button_unlocks_not_mutes": true,
+    "button_throw_creates_real_orbit": true,
+    "actual_audio_signal": true,
+    "no_clipping_onset": true,
+    "pause_freezes_shared_clock": true,
+    "pause_suspends_audio_context": true,
+    "resume_continues_clock": true,
+    "mute_silences_actual_output": true,
+    "five_synth_voice_types": true,
+    "climax_audible_without_clipping": true,
+    "reset_clears_drops_and_voices": true,
+    "reset_restores_intro": true,
+    "mouse_drag_throws": true,
+    "keyboard_target_and_throw": true,
+    "bounded_four_drop_polyphony": true,
+    "natural_ending_returns_to_calm": true,
+    "about_opens": true,
+    "about_closes_with_escape": true,
+    "simulated_visibility_pauses": true,
+    "mobile_no_horizontal_overflow": true,
+    "mobile_controls_fit_and_touch_height": true,
+    "touch_tap_throws": true,
+    "reduced_motion_detected": true
+  },
+  "errors": [],
+  "audio_onset": {
+    "peak": 0.050021782517433167,
+    "rms": 0.013222998204219863
+  },
+  "scheduled_voice_types": [
+    "pluck",
+    "bass",
+    "pad",
+    "bell",
+    "bloom"
+  ],
+  "audio_climax_peak": 0.11280055344104767,
+  "pass": true
+}
