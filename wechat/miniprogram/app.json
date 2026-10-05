@@ -1,0 +1,8 @@
+{
+  "pages": ["pages/experience/index"],
+  "window": {
+    "navigationBarTitleText": "Formody · 拨形见声",
+    "navigationBarBackgroundColor": "#eef1eb",
+    "navigationBarTextStyle": "black"
+  }
+}
