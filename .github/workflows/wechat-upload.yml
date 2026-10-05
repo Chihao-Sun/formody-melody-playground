@@ -1,0 +1,29 @@
+name: Upload Formody WeChat entry
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'wechat/**'
+      - '.github/workflows/wechat-upload.yml'
+permissions:
+  contents: read
+concurrency:
+  group: formody-wechat-upload
+  cancel-in-progress: false
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install official upload compiler
+        run: npm install --prefix "$RUNNER_TEMP/formody-ci" --no-save --ignore-scripts miniprogram-ci@2.1.48
+      - name: Upload development code
+        run: node wechat/upload.cjs
+        env:
+          NODE_PATH: ${{ runner.temp }}/formody-ci/node_modules
+          FORMODY_WECHAT_APPID: ${{ secrets.FORMODY_WECHAT_APPID }}
+          FORMODY_WECHAT_PRIVATE_KEY: ${{ secrets.FORMODY_WECHAT_PRIVATE_KEY }}

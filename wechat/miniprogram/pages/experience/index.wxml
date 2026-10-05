@@ -1,0 +1,5 @@
+<web-view wx:if="{{!failed}}" src="{{url}}" binderror="onLoadError" />
+<view wx:else class="unavailable">
+  <text>暂时没有连上湖畔</text>
+  <button bindtap="retry">再试一次</button>
+</view>

@@ -1,0 +1,12 @@
+{
+  "description": "Formody · 拨形见声微信入口（接入草稿）",
+  "appid": "touristappid",
+  "projectname": "formody",
+  "compileType": "miniprogram",
+  "miniprogramRoot": "miniprogram/",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "minified": true
+  }
+}
