@@ -1,3 +1,13 @@
+# Formody · 拨形见声 — 平台状态更新（2026-10-06）
+
+新增独立原生微信小程序项目：[`wechat-native/`](wechat-native/README.md)，开发者工具项目名 `formody`，不使用 web-view 包装游戏，网站端未修改。小程序以已核对的线上 Sites 第 51 版夕阳湖岸投石为基线（源码提交 `38ee25d3f9cb41dac9307d93bd7c91f1e6571ca6`），保留画面、数学／音乐规则和玩法，分别适配微信触摸、音频、短震动、设备姿态与生命周期。
+
+目前是可导入的开发项目，**未运行微信开发者工具编译／真机验收，未上传、提审、发布或提交比赛**。AppID 为占位，需 Formody 独立注册账号。21 项本机 Node 回归和静态检查通过；四个本机离屏画布场景与原绘制代码像素一致，不是微信真机截图。细节与差异见小程序 README 和验收清单。
+
+GitHub 根目录的浏览器源码仍是较早的 Ripple 快照；下方 README 描述 2026-10-01 那次源码工作的范围，其“最后发布”段落是当时的历史记录，不代表当前网站状态。本次没有重新发布网站，也没有把网站后续调整自动同步到原生小程序。
+
+---
+
 # Formody · 拨形见声
 
 **Play a shape. Find a melody.**
@@ -67,3 +77,4 @@ Project guidance: [AGENTS.md](AGENTS.md), [architecture](docs/architecture.md), 
 This is a public prototype preparing for an open-source release. A project license and contribution terms have not been selected. Stars and feedback are welcome; code contributions are not open yet. No public launch or social announcement is implied by this source update.
 
 本项目是正在准备开源的公开原型，许可证与贡献条款尚未确定。欢迎 Star 与反馈，暂不开放代码贡献。
+

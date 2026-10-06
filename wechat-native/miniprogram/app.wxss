@@ -1,0 +1,6 @@
+page{margin:0;height:100%;background:#247ca0;color:#fff8ec;font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+view,button,text,image,scroll-view{box-sizing:border-box}
+button{font:inherit;color:inherit;margin:0;padding:0;border:0;line-height:normal;background:transparent;border-radius:0}
+button::after{border:0}
+button[disabled]{opacity:.5}
+button:active{opacity:.8}

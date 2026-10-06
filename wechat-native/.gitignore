@@ -1,0 +1,8 @@
+project.private.config.json
+node_modules/
+*.key
+*.pem
+*.zip
+docs/offscreen-checks/390x844-ready.png
+docs/offscreen-checks/844x390-ready.png
+docs/offscreen-checks/844x390-ripples.png

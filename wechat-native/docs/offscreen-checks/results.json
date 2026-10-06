@@ -1,0 +1,33 @@
+{
+  "renderer": "local offscreen Canvas; not WeChat runtime",
+  "results": [
+    {
+      "width": 390,
+      "height": 844,
+      "mode": "ready",
+      "changedChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "mode": "ripples",
+      "changedChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "ready",
+      "changedChannels": 0,
+      "maxChannelDelta": 0
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "mode": "ripples",
+      "changedChannels": 0,
+      "maxChannelDelta": 0
+    }
+  ]
+}

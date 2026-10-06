@@ -1,0 +1,13 @@
+<view class="classic-page" style="padding-top:{{top}}px;padding-bottom:{{safeBottom}}px">
+  <view class="header"><button class="wordmark" bindtap="back">formody<text>拨形见声</text></button><text class="edition">STUDY 001
+OUTER BILLIARDS</text></view>
+  <view class="instrument">
+    <canvas id="classic" type="2d" catchtouchstart="move" catchtouchmove="move" aria-label="点击或拖动 Seed，让五边形外的起点产生轨迹和声音。" />
+    <view class="top-left"><text class="label">EUCLIDEAN PLANE</text><text class="coordinates">{{coordinates}}</text></view>
+    <view class="top-right"><view class="indicator {{running?'live':''}}" /><text>{{running?'正在演奏':'声音已暂停'}}</text></view>
+    <view class="intro" wx:if="{{intro}}"><text class="eyebrow">A PLAYABLE MATHEMATICAL STUDY</text><text class="title">Play a shape.</text><text class="title muted">Find a melody.</text><text class="invitation">移动一个起点，让数学开口。</text><button class="start" bindtap="play">开启体验<text>↗</text></button><text class="start-note">建议戴上耳机 · 点击后开启声音</text></view>
+    <view class="caption"><text class="label">REGULAR PENTAGON</text><text>{{orbitStatus}}</text></view><text class="hint">拖动亮点，或点击五边形外任意位置。</text><text class="error" wx:if="{{error}}">{{error}}</text>
+  </view>
+  <view class="footer"><view class="transport"><button class="play-control" bindtap="play" aria-label="{{running?'暂停声音':'开启声音'}}">{{running?'Ⅱ':'▶'}}</button><view><text class="label">96 BPM · 2 STEPS / BEAT</text><text class="transport-status">{{running?'16 步乐句 · 循环播放':'点击播放，继续探索'}}</text></view></view><view class="phrase"><view wx:for="{{bars}}" wx:key="id" class="bar {{item.id===activeIndex?'active':''}}" style="height:{{item.height}}px" /></view><view class="footer-actions"><button bindtap="reset">重置起点</button><button bindtap="showAbout">作品说明 ↗</button></view></view>
+  <view wx:if="{{about}}" class="backdrop" catchtap="closeAbout" catchtouchmove="noop"><view class="about" catchtap="noop"><button class="close" bindtap="closeAbout" aria-label="关闭作品说明">×</button><scroll-view scroll-y="true" class="about-scroll"><text class="about-title">一条规则，一段声音。</text><text>从五边形外的起点出发，选择让多边形处于行进方向左侧的切线，以切点为中心反射，再重复这个动作。这就是这里的 Outer Billiards。</text><text>每一步经过的切点顶点决定一个音符。当前起点的前 16 步成为循环乐句；移动起点，就会重新演奏。亮起的轨迹段跟随声音的时钟。</text><text>音乐循环与数学轨道回归分别计算。有限步内未检测到回归，不能证明轨道无限或不周期；数值回归也不是严格证明。切线沿整条边时，数学映射未定义，轨迹会停止。</text><text>这是单 Seed 原型。音色、速度、调式与乐句长度都是暂定参数。音乐使用小程序实时合成。</text><button bindtap="source">复制数学依据链接 ↗</button></scroll-view></view></view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "pages":["pages/pond/index","pages/classic/index"],
+  "window":{"navigationStyle":"custom","navigationBarTextStyle":"white","backgroundColor":"#638eac"},
+  "style":"v2",
+  "pageOrientation":"auto",
+  "sitemapLocation":"sitemap.json"
+}
