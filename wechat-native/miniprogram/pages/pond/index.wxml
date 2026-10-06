@@ -1,0 +1,59 @@
+<view class="stage {{entered?'entered':''}} {{entryDeparting?'entering':''}} {{playing?'playing':''}} {{holding?'holding':''}} {{listening?'listening-mode':''}} {{reduced?'reduced':''}}">
+  <canvas id="pond" type="2d" class="pond" catchtouchstart="touchStart" catchtouchmove="touchMove" catchtouchend="touchEnd" catchtouchcancel="touchCancel" aria-label="按住下方石头，拖动后松手投出。平快轻扫打水漂，向上划弧高抛。" />
+  <view class="header" style="top:{{top}}px">
+    <view class="brand">Formody<text class="brand-cn">拨形见声</text></view>
+    <view class="top-actions" wx:if="{{entered}}">
+      <button class="round" bindtap="sound" aria-label="{{sounding?'关闭声音':'开启声音'}}"><image class="sound-icon {{sounding?'is-sounding':''}}" src="/assets/icons/{{sounding?'sound-on':'sound-off'}}.svg" /></button>
+      <button class="round" bindtap="openSettings" aria-label="打开湖畔设置"><image src="/assets/icons/settings.svg" /></button>
+    </view>
+  </view>
+  <view class="score" wx:if="{{entered}}" style="top:{{top+82}}px">
+    <text>{{scoreLabel}}</text><view class="score-dots"><view wx:for="{{dots}}" wx:key="*this" class="dot {{item&lt;scoreParts?'filled':''}}" /></view>
+  </view>
+  <view class="toast {{toastQuiet?'quiet':''}} {{toastGuidance?'guidance':''}}" wx:if="{{toast}}" style="top:{{top+137}}px;opacity:{{toastOpacity}}">{{toast}}</view>
+  <view class="tutorial" wx:if="{{entered}}"><text class="hint">{{hint}}</text><view class="gesture-options">
+    <view class="gesture-option"><image src="/assets/icons/skip.svg" /><view><text>平快轻扫</text><text class="small">打水漂</text></view></view>
+    <view class="gesture-option"><image src="/assets/icons/lob.svg" /><view><text>向上划弧</text><text class="small">高抛</text></view></view>
+  </view></view>
+  <view class="hand-info" wx:if="{{entered}}" style="bottom:{{139+safeBottom}}px"><text class="stone-name {{rare?'rare':''}}" style="opacity:{{stoneOpacity}}">{{stoneName}}</text></view>
+  <view class="listening" wx:if="{{listening}}" style="bottom:{{115+safeBottom}}px">
+    <text class="listening-label">{{listeningLabel}}</text><text class="listening-hint">轻点水面，让乐章起伏</text>
+    <view class="progress"><view style="width:{{progress}}%" /></view>
+    <button class="again" wx:if="{{againVisible}}" disabled="{{againDisabled}}" bindtap="again"><view class="seek-pill"><image src="/assets/icons/seek.svg" /><text>低头寻石</text></view></button>
+  </view>
+  <view class="sound-entry {{entryDeparting?'departing':''}}" wx:if="{{!entered||entryDeparting}}">
+    <view class="entry-card"><text class="entry-mark">♪</text><text class="entry-kicker">FORMODY · 拨形见声</text><text class="entry-title">开启声音
+体验更完整</text><text class="entry-description">听见每一次触水
+也听见湖面的回响</text>
+      <button class="enter-sound" bindtap="enterSound" disabled="{{starting||!!error}}"><image class="entry-ripple" src="/assets/icons/entry-ripple.svg" /><text>开启声音，步入湖畔</text><image class="entry-arrow" src="/assets/icons/entry-arrow.svg" /></button>
+      <button class="enter-muted" bindtap="enterMuted" disabled="{{!!error}}">静音进入</button><text class="entry-note">{{entryNote}}</text>
+    </view>
+  </view>
+  <view wx:if="{{error}}" class="error-panel"><text>{{error}}</text><button bindtap="retry">重新加载湖面</button></view>
+  <view class="dialog-backdrop" wx:if="{{settings}}" catchtap="closeSettings" catchtouchmove="noop">
+    <view class="settings-dialog" catchtap="noop">
+      <button class="close" bindtap="closeSettings" aria-label="关闭设置">×</button>
+      <scroll-view scroll-y="true" class="dialog-scroll">
+        <text class="settings-title">湖畔片刻</text>
+        <view class="setting-row"><text>触水震动</text><button class="setting-toggle {{hapticsEnabled?'enabled':''}}" disabled="{{!hapticsAvailable}}" bindtap="haptics">{{hapticsEnabled?'已开启':'已关闭'}}</button></view>
+        <text class="note">{{hapticStatus}}。每次触水时轻震，随弹跳逐次减弱；实际效果取决于设备与系统设置。</text>
+        <view class="setting-row"><text>随设备倾斜</text><button class="setting-toggle {{motionEnabled?'enabled':''}}" disabled="{{!motionAvailable}}" bindtap="motion">{{motionEnabled?'已开启':'已关闭'}}</button></view><text class="note">{{motionStatus}}。仅在本机读取姿态，未保存或上传；不可用时仍可投石。</text>
+        <view class="setting-row"><text>减少动态效果</text><button class="setting-toggle {{reduced?'enabled':''}}" bindtap="reduced">{{reduced?'已开启':'已关闭'}}</button></view><text class="note">保留投石与音乐，减弱环境动画和倾斜幅度。</text>
+        <view class="details"><button class="summary" data-section="guideOpen" bindtap="section">怎么玩<text>{{guideOpen?'−':'+'}}</text></button><view wx:if="{{guideOpen}}">
+          <view class="lake-guide"><image src="/assets/icons/lake-guide.svg" mode="widthFix" /><text>第一下落水，决定这块石头的音色。
+水漂越多，这个声部越丰富。</text></view>
+          <text class="paragraph">按住石头，松手才出手。平快甩动更容易打水漂，向上划弧会高抛。每块石头加入一个持续回响的声部。普通石头水漂触水 2–4 次，稀有晶石 6–10 次，高抛只触水一次。下一块石头会自动出现。投完四块石头组成乐章，进入聆听后，点击「低头寻石」开启下一轮。石头有 1/6（16.7%）概率是稀有晶石，成章时会唤起更丰富的齐奏。</text>
+        </view></view>
+        <view class="details"><button class="summary" data-section="mathOpen" bindtap="section">数学与声音<text>{{mathOpen?'−':'+'}}</text></button><text wx:if="{{mathOpen}}" class="paragraph">真实的正五边形外台球切点序列生成旋律，多个声部共享调性与节拍。水面的径向波与角向谐波是数学图案的艺术表达；投掷和水漂使用简化的重力、阻力与碰撞模型。乐音在小程序内合成，触水音效使用经过剪辑与响度统一的录音。</text></view>
+        <view class="details"><button class="summary" data-section="creditsOpen" bindtap="section">水声来源<text>{{creditsOpen?'−':'+'}}</text></button><view wx:if="{{creditsOpen}}">
+          <text class="paragraph">打水漂：Rock Skip — bevibeldesign（CC0，拆分片段）。小石头：small rock dropped into creek — JPBILLINGSLEYJR。大石头：splash sw3 — Setuniman。后两项为 CC BY 4.0，均作裁剪、淡入淡出与响度调整。点击下方可复制来源链接。</text>
+          <button class="source" bindtap="copySource" data-url="https://freesound.org/people/bevibeldesign/sounds/350430/">Rock Skip · 来源</button>
+          <button class="source" bindtap="copySource" data-url="https://freesound.org/people/JPBILLINGSLEYJR/sounds/468526/">small rock dropped into creek · 来源</button>
+          <button class="source" bindtap="copySource" data-url="https://freesound.org/people/Setuniman/sounds/135774/">splash sw3 · 来源</button>
+          <button class="source" bindtap="copySource" data-url="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 · 许可</button>
+        </view></view>
+        <button class="classic" bindtap="classic">探索原版数学体验</button>
+      </scroll-view>
+    </view>
+  </view>
+</view>
